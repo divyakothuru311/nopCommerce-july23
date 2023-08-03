@@ -1,49 +1,43 @@
-pipeline {
-
-
-    agent { label 'dotnet' } 
-
-    triggers {
-        pollSCM('* * * * *')
-
+pipeline{
+    agent { label 'dotnet'}
     
+    triggers {
+        pollSCM('* * * * *') 
     }
-    tools {
-        jdk 'JDK_17'
-         
-    }
-
-    stages { 
-        stage('vcs') {
+    stages {
+        stage('git vcs') {
             steps {
                 git url: 'https://github.com/divyakothuru311/nopCommerce-july23.git',
                     branch: 'develop'
             }
-                
         }
+
         stage('build and package') {
-           steps {
-                rtDotnetResolver (
-                    id : "lalitha",
-                    serverId : "jfrogconnection",
-                    repo : "nop-nuget-local"
-                ) 
-                rtDotnetRun (
-                    args : "build src/NopCommerce.sln",
-                    resolverId : "lalitha"
+            steps {
+                rtDotnetResolver(
+                    id: "DOTNET_RESOLVER",
+                    serverId: "jfrogconnection",
+                    repo: "nop-nuget-remote"
                 )
-                 rtPublishBuildInfo (
-                    serverId: "jfrogconnection"
-                 )
-                 
-
-
-           }
-        }
-         stage('results') {
-            steps{
-                archiveArtifacts artifacts: '**/*.dll'
             }
         }
+
+        stage ('Exec build') {
+            steps {
+                rtDotnetRun (
+                    resolverId: "DOTNET_RESOLVER",
+                    args: "build src/NopCommerce.sln"
+                )
+            }
+        }
+
+        stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                    serverId: "jfrogconnection"
+                )
+           }
+        
+        }
     }
-}
+}  
