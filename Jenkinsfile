@@ -16,7 +16,7 @@ pipeline{
             steps {
                 rtDotnetResolver(
                     id: "DOTNET_RESOLVER",
-                    serverId: "jfrogconnection",
+                    serverId: "instance",
                     repo: "nop-nuget-remote"
                 )
             }
@@ -34,7 +34,7 @@ pipeline{
         stage ('Publish build info') {
             steps {
                 rtPublishBuildInfo (
-                    serverId: "jfrogconnection"
+                    serverId: "instance"
                 )
            }
         
