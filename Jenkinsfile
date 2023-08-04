@@ -49,7 +49,9 @@ pipeline{
                     /d:sonar.host.url=https://sonarcloud.io
                     dotnet build src/NopCommerce.sln
                     mono SonarScanner.MSBuild.exe end
-                }
-        }
+                   }
+                   
+            }
+        
     }
 }  
