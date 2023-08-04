@@ -15,9 +15,9 @@ pipeline{
         stage('build and package') {
             steps {
                 rtDotnetResolver(
-                    id: "DOTNET_RESOLVER",
+                    id: "devops",
                     serverId: "instance",
-                    repo: "commerce-nuget-local"
+                    repo: "nopy-nuget-local"
                 )
             }
         }
@@ -25,7 +25,7 @@ pipeline{
         stage ('build') {
             steps {
                 rtDotnetRun (
-                    resolverId: "DOTNET_RESOLVER",
+                    resolverId: "devops",
                     args: "build src/NopCommerce.sln"
                 )
             }
