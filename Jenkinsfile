@@ -43,10 +43,10 @@ pipeline{
         stage('sonar scanner') {
             steps {
                 withSonarQubeEnv('devops-commerce') {
-                  sh 'dotnet tool install --global /home/ubuntu/.dotnet/tools/dotnet-sonarscanner'
-                  sh 'dotnet sonarscanner begin -Dsonar.projectKey:divyakothuru311_devops-commerce -Dsonar.organization:divyakothuru311 -Dsonar.token=5fc92ed3504db030d05f2d4ebacb5cb12a30385f'
+                //   sh 'dotnet tool install --global dotnet-sonarscanner'
+                  sh 'sudo /home/ubuntu/.dotnet/tools/dotnet-sonarscanner begin -Dsonar.projectKey:divyakothuru311_devops-commerce -Dsonar.organization:divyakothuru311 -Dsonar.token=5fc92ed3504db030d05f2d4ebacb5cb12a30385f'
                   sh 'dotnet build src/Presentation/Nop.Web/Nop.Web.csproj'
-                  sh 'dotnet sonarscanner end -Dsonar.token=5fc92ed3504db030d05f2d4ebacb5cb12a30385f'
+                  sh 'sudo /home/ubuntu/.dotnet/tools/dotnet-sonarscanner end -Dsonar.token=5fc92ed3504db030d05f2d4ebacb5cb12a30385f'
 
                 }  
             }
