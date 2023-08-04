@@ -45,7 +45,7 @@ pipeline{
                 withSonarQubeEnv('Sonarqube') {
                   sh 'dotnet tool install --global dotnet-sonarscanner'
                   sh 'dotnet sonarscanner begin /k:"divyakothuru311_devops-commerce" /o:"divyakothuru311" /d:sonar.token="5fc92ed3504db030d05f2d4ebacb5cb12a30385f"'
-                  sh 'dotnet build nopCommerce-july23\src\Presentation\Nop.Web\Nop.Web.csproj',
+                  sh 'dotnet build nopCommerce-july23/src/Presentation/Nop.Web/Nop.Web.csproj',
                   sh 'dotnet sonarscanner end /d:sonar.token="5fc92ed3504db030d05f2d4ebacb5cb12a30385f"'
 
                 }  
