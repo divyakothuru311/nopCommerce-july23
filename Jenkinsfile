@@ -43,15 +43,11 @@ pipeline{
         stage('sonar scanner'){
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    mono SonarScanner.MSBuild.exe \
-                    /o:divyakothuru311 \
-                    /k:divyakothuru311_devops-commerce \
-                    /d:sonar.host.url=https://sonarcloud.io
-                    dotnet build src/NopCommerce.sln
-                    mono SonarScanner.MSBuild.exe
+                   mono SonarScanner.MSBuild.exe begin /o:divyakothuru311 /k:divyakothuru311_devops-commerce /d:sonar.host.url=https://sonarcloud.io dotnet build src/NopCommerce.sln mono SonarScanner.MSBuild.exe end
                 }
                    
             }
         
-    }
-}  
+        }
+    }  
+}    
