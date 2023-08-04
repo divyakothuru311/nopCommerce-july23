@@ -43,9 +43,11 @@ pipeline{
         stage('sonar scanner') {
             steps {
                 withSonarQubeEnv('Sonarqube') {
-                   dotnet sonarscanner begin /k:"divyakothuru311_devops-commerce" /o:"divyakothuru311" /d:sonar.token="5fc92ed3504db030d05f2d4ebacb5cb12a30385f",
-                   dotnet build src/NopCommerce.sln,
-                   dotnet sonarscanner end /d:sonar.token="5fc92ed3504db030d05f2d4ebacb5cb12a30385f"
+                  sh 'dotnet tool install --global dotnet-sonarscanner'
+                  sh 'dotnet sonarscanner begin /k:"divyakothuru311_devops-commerce" /o:"divyakothuru311" /d:sonar.token="5fc92ed3504db030d05f2d4ebacb5cb12a30385f"'
+                  sh 'dotnet build src/NopCommerce.sln',
+                  sh 'dotnet sonarscanner end /d:sonar.token="5fc92ed3504db030d05f2d4ebacb5cb12a30385f"'
+
                 }  
             }
         
