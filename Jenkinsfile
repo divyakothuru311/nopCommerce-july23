@@ -17,12 +17,12 @@ pipeline{
                 rtDotnetResolver(
                     id: "DOTNET_RESOLVER",
                     serverId: "instance",
-                    repo: "nop-nuget-remote"
+                    repo: "commerce-nuget-local"
                 )
             }
         }
 
-        stage ('Exec build') {
+        stage ('build') {
             steps {
                 rtDotnetRun (
                     resolverId: "DOTNET_RESOLVER",
