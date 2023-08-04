@@ -2,7 +2,7 @@ pipeline{
     agent { label 'dotnet'}
     
     triggers {
-        pollSCM('* * * * *') 
+      //  pollSCM('* * * * *') 
     }
     stages {
         stage('git vcs') {
