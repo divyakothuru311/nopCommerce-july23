@@ -42,6 +42,7 @@ pipeline{
 
         stage('sonar scanner') {
             steps {
+                script {
                 def sqScannerMsBuildHome = tool 'devops-commerce'
                 withSonarQubeEnv('devops-commerce') {
                 
@@ -50,7 +51,8 @@ pipeline{
                   sh 'dotnet build /home/ubuntu/jenkins_home/workspace/devops/src/NopCommerce.sln'
                   sh 'sudo /home/ubuntu/.dotnet/tools/dotnet-sonarscanner end'
 
-                }  
+                }
+                }
             }
         
         }
