@@ -42,6 +42,7 @@ pipeline{
 
         stage('sonar scanner') {
             steps {
+                def sqScannerMsBuildHome = tool 'devops-commerce'
                 withSonarQubeEnv('devops-commerce') {
                 
                   //sh 'dotnet tool install --global dotnet-sonarscanner'
