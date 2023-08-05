@@ -45,7 +45,7 @@ pipeline{
                 withSonarQubeEnv('devops-commerce') {
                 
                   //sh 'dotnet tool install --global dotnet-sonarscanner'
-                  sh 'sudo /home/ubuntu/.dotnet/tools/dotnet-sonarscanner begin /k:"divyakothuru311_devops-commerce" /o:"divyakothuru311" /d:sonar.host.url=https://sonarcloud.io/'
+                  sh 'dotnet sonarscanner begin k:"divyakothuru311_devops-commerce" o:"divyakothuru311" d:sonar.token="cf2551d07e163cc0b29bfb7c45b1c02a5147a57c"'
                   sh 'dotnet build /home/ubuntu/jenkins_home/workspace/devops/src/NopCommerce.sln'
                   sh 'sudo /home/ubuntu/.dotnet/tools/dotnet-sonarscanner end'
 
